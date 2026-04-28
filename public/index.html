@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Route Agent Demo</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIINfQbM3c8Eft9mZ5K7qVQoXn6p8a6P4Q8="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace">
+        <div class="map-toolbar" aria-label="route controls">
+          <div class="field">
+            <label for="profile">Profile</label>
+            <select id="profile">
+              <option value="trekking">trekking</option>
+              <option value="fastbike">fastbike</option>
+              <option value="safety">safety</option>
+              <option value="shortest">shortest</option>
+            </select>
+          </div>
+          <button id="modeStart" class="active" type="button">起点</button>
+          <button id="modeEnd" type="button">终点</button>
+          <button id="hangzhouPreset" type="button">杭州示例</button>
+          <button id="routeButton" type="button">计算路线</button>
+        </div>
+        <div id="map"></div>
+      </section>
+
+      <aside class="analysis">
+        <div>
+          <p class="eyebrow">Route Agent</p>
+          <h1>BRouter 路线导航 Demo</h1>
+        </div>
+
+        <div class="points">
+          <div>
+            <span>起点</span>
+            <strong id="startText">点击地图选择</strong>
+          </div>
+          <div>
+            <span>终点</span>
+            <strong id="endText">点击地图选择</strong>
+          </div>
+        </div>
+
+        <div id="status" class="status">选择起点和终点后计算路线。</div>
+
+        <section class="metrics" aria-label="route metrics">
+          <div>
+            <span>距离</span>
+            <strong id="distance">-</strong>
+          </div>
+          <div>
+            <span>爬升</span>
+            <strong id="gain">-</strong>
+          </div>
+          <div>
+            <span>下降</span>
+            <strong id="loss">-</strong>
+          </div>
+          <div>
+            <span>最大坡度</span>
+            <strong id="maxGrade">-</strong>
+          </div>
+        </section>
+
+        <section>
+          <h2>转向统计</h2>
+          <div class="turns">
+            <div><span>直走</span><strong id="straightTurns">-</strong></div>
+            <div><span>左转</span><strong id="leftTurns">-</strong></div>
+            <div><span>右转</span><strong id="rightTurns">-</strong></div>
+            <div><span>急转</span><strong id="sharpTurns">-</strong></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>坡度区间</h2>
+          <ul id="gradeSections" class="list muted-list">
+            <li>暂无路线</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>路面 / 道路标签</h2>
+          <ul id="surfaceList" class="list muted-list">
+            <li>BRouter GeoJSON 通常不一定返回路面标签。</li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
